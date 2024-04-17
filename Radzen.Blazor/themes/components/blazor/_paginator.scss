@@ -1,5 +1,6 @@
 $paginator-background-color: var(--rz-base-background-color) !default;
 $paginator-padding: 0.5rem !default;
+$paginator-gap: 0.5rem !default;
 $paginator-border: $grid-border !default;
 
 $paginator-button-border-radius: var(--rz-border-radius) !default;
@@ -9,7 +10,6 @@ $paginator-numeric-button-color: var(--rz-text-color) !default;
 $paginator-numeric-button-border: 1px solid transparent !default;
 $paginator-numeric-button-hover-background-color: $paginator-numeric-button-background-color !default;
 $paginator-numeric-button-hover-color: $paginator-numeric-button-color !default;
-$paginator-numeric-button-margin: 0 0.25rem !default;
 $paginator-numeric-button-padding: 0.4375rem !default;
 $paginator-numeric-button-selected-background-color: var(--rz-base-background-color) !default;
 $paginator-numeric-button-selected-color: var(--rz-primary) !default;
@@ -22,18 +22,14 @@ $paginator-back-button-color: var(--rz-text-color) !default;
 $paginator-back-button-hover-background-color: $paginator-back-button-background-color !default;
 $paginator-back-button-hover-color: $paginator-back-button-color !default;
 
-$paginator-first-button-margin: 0 0.5rem 0 0 !default;
-$paginator-last-button-margin: 0 0 0 0.5rem !default;
-
 $paginator-next-button-background-color: var(--rz-base-200) !default;
 $paginator-next-button-color: var(--rz-text-color) !default;
 $paginator-next-button-hover-background-color: $paginator-next-button-background-color !default;
 $paginator-next-button-hover-color: $paginator-next-button-color !default;
 
 $paginator-dropdown-width: 80px !default;
-$paginator-dropdown-margin: $paginator-last-button-margin !default;
 
-$paginator-summary-padding: 0 1.25rem 0 0 !default;
+$paginator-summary-padding: 1.25rem !default;
 $paginator-summary-font-size: var(--rz-body-font-size) !default;
 $paginator-summary-color: var(--rz-text-secondary-color) !default;
 
@@ -44,6 +40,7 @@ $paginator-button-size: "%button-md" !default;
 :root {
   --rz-paginator-background-color: #{$paginator-background-color};
   --rz-paginator-padding: #{$paginator-padding};
+  --rz-paginator-gap: #{$paginator-gap};
   --rz-paginator-border: #{$paginator-border};
 
   --rz-paginator-button-border-radius: #{$paginator-button-border-radius};
@@ -53,7 +50,6 @@ $paginator-button-size: "%button-md" !default;
   --rz-paginator-numeric-button-border: #{$paginator-numeric-button-border};
   --rz-paginator-numeric-button-hover-background-color: #{$paginator-numeric-button-hover-background-color};
   --rz-paginator-numeric-button-hover-color: #{$paginator-numeric-button-hover-color};
-  --rz-paginator-numeric-button-margin: #{$paginator-numeric-button-margin};
   --rz-paginator-numeric-button-padding: #{$paginator-numeric-button-padding};
   --rz-paginator-numeric-button-selected-background-color: #{$paginator-numeric-button-selected-background-color};
   --rz-paginator-numeric-button-selected-color: #{$paginator-numeric-button-selected-color};
@@ -66,16 +62,12 @@ $paginator-button-size: "%button-md" !default;
   --rz-paginator-back-button-hover-background-color: #{$paginator-back-button-hover-background-color};
   --rz-paginator-back-button-hover-color: #{$paginator-back-button-hover-color};
 
-  --rz-paginator-first-button-margin: #{$paginator-first-button-margin};
-  --rz-paginator-last-button-margin: #{$paginator-last-button-margin};
-
   --rz-paginator-next-button-background-color: #{$paginator-next-button-background-color};
   --rz-paginator-next-button-color: #{$paginator-next-button-color};
   --rz-paginator-next-button-hover-background-color: #{$paginator-next-button-hover-background-color};
   --rz-paginator-next-button-hover-color: #{$paginator-next-button-hover-color};
 
   --rz-paginator-dropdown-width: #{$paginator-dropdown-width};
-  --rz-paginator-dropdown-margin: #{$paginator-dropdown-margin};
 
   --rz-paginator-summary-padding: #{$paginator-summary-padding};
   --rz-paginator-summary-font-size: #{$paginator-summary-font-size};
@@ -86,6 +78,7 @@ $paginator-button-size: "%button-md" !default;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--rz-paginator-gap);
   flex-wrap: wrap;
 
   &:focus {
@@ -103,11 +96,11 @@ $paginator-button-size: "%button-md" !default;
   }
 
   &.rz-align-right {
-    justify-content: flex-end;
+    justify-content: right;
   }
 
   &.rz-align-left {
-    justify-content: flex-start;
+    justify-content: left;
   }
 
   &.rz-align-center {
@@ -141,16 +134,21 @@ $paginator-button-size: "%button-md" !default;
     }
   }
 
+  /* Right-to-left arrow icons */
+  *[dir="rtl"] & {
+    .rz-paginator-icon {
+      transform: rotate(180deg);
+    }
+  }
+
   .rz-dropdown {
     order: 2;
     width: var(--rz-paginator-dropdown-width);
-    margin-left: 1rem;
     overflow: visible;
   }
 
   .rz-pagesize-text {
     order: 2;
-    margin: var(--rz-paginator-last-button-margin);
     font-size: var(--rz-paginator-summary-font-size);
     color: var(--rz-paginator-summary-color);
   }
@@ -174,6 +172,7 @@ $paginator-button-size: "%button-md" !default;
 
 .rz-paginator-pages {
   display: inline-flex;
+  gap: var(--rz-paginator-gap);
   margin: 0 0.5rem;
 }
 
@@ -183,38 +182,34 @@ $paginator-button-size: "%button-md" !default;
 }
 
 .rz-paginator-first {
-  margin: var(--rz-paginator-first-button-margin);
-
   .rz-align-center & {
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 }
 
 .rz-paginator-prev {
-  margin-right: auto;
+  margin-inline-end: auto;
 
   .rz-align-left &,
   .rz-align-right &,
   .rz-align-center & {
-    margin: var(--rz-paginator-first-button-margin);
+    margin-inline-end: 0;
   }
 }
 
 .rz-paginator-next {
-  margin-left: auto;
+  margin-inline-start: auto;
 
   .rz-align-left &,
   .rz-align-right &,
   .rz-align-center & {
-    margin: var(--rz-paginator-last-button-margin);
+    margin-inline-start: 0;
   }
 }
 
 .rz-paginator-last {
-  margin: var(--rz-paginator-last-button-margin);
-
   .rz-align-center & {
-    margin-right: auto;
+    margin-inline-end: auto;
   }
 }
 
@@ -242,7 +237,7 @@ $paginator-button-size: "%button-md" !default;
   display: inline-block;
   min-width: var(--rz-paginator-numeric-button-min-width);
   text-align: center;
-  margin: var(--rz-paginator-numeric-button-margin);
+  gap: var(--rz-paginator-gap);
   background-color: var(--rz-paginator-numeric-button-background-color);
   border: var(--rz-paginator-numeric-button-border);
   border-radius: var(--rz-paginator-button-border-radius);
@@ -258,79 +253,87 @@ $paginator-button-size: "%button-md" !default;
 }
 
 .rz-paginator-summary {
-    padding: var(--rz-paginator-summary-padding);
-    font-size: var(--rz-paginator-summary-font-size);
-    color: var(--rz-paginator-summary-color);
+  padding-inline-end: var(--rz-paginator-summary-padding);
+  font-size: var(--rz-paginator-summary-font-size);
+  color: var(--rz-paginator-summary-color);
 
-    .rz-align-right & {
-      margin-right: auto;
-    }
+  .rz-align-right & {
+    margin-right: auto;
+  }
 
-    .rz-align-left & {
-      order: 2;
-      margin-left: auto;
-      padding: 0;
-    }
+  .rz-align-left & {
+    order: 2;
+    margin-left: auto;
+    padding: 0;
+  }
+
+  *[dir="rtl"] .rz-align-right & {
+    order: 1;
+  }
+
+  *[dir="rtl"] .rz-align-left & {
+    order: 0;
+  }
 }
 
 @media (max-width: 768px) {
-    .rz-paginator-page {
-        &:not(.rz-state-active) {
-            display: none;
-        }
-    }
+  .rz-paginator-page {
+      &:not(.rz-state-active) {
+          display: none;
+      }
+  }
 
-    .rz-paginator {
-        display: grid;
-        grid-column-gap: 0.5rem;
-        grid-row-gap: 1rem;
-        grid-template-columns: repeat(9, 1fr);
-        text-align: center;
+  .rz-paginator {
+      display: grid;
+      grid-column-gap: 0.5rem;
+      grid-row-gap: 1rem;
+      grid-template-columns: repeat(9, 1fr);
+      text-align: center;
 
-        .rz-dropdown {
-            grid-column: 1/4;
-            width: auto;
-            margin: 0 !important;
-            text-align: left;
-        }
+      .rz-dropdown {
+          grid-column: 1/4;
+          width: auto;
+          margin: 0 !important;
+          text-align: left;
+      }
 
-        .rz-pagesize-text {
-            grid-column: 4/10;
-            margin: 0 !important;
-            text-align: left;
-        }
-    }
+      .rz-pagesize-text {
+          grid-column: 4/10;
+          margin: 0 !important;
+          text-align: left;
+      }
+  }
 
-    .rz-paginator-summary {
-        grid-column: 1/10;
-        padding: 0 !important;
-        text-align: left;
-    }
+  .rz-paginator-summary {
+      grid-column: 1/10;
+      padding: 0 !important;
+      text-align: left;
+  }
 
-    .rz-paginator-first {
-        grid-column: 1/3;
-        margin: 0 !important;
-    }
+  .rz-paginator-first {
+      grid-column: 1/3;
+      margin: 0 !important;
+  }
 
-    .rz-paginator-prev {
-        grid-column: 3/5;
-        margin: 0 !important;
-    }
+  .rz-paginator-prev {
+      grid-column: 3/5;
+      margin: 0 !important;
+  }
 
-    .rz-paginator-pages {
-        grid-column: 5/6;
-        margin: 0 !important;
-    }
+  .rz-paginator-pages {
+      grid-column: 5/6;
+      margin: 0 !important;
+  }
 
-    .rz-paginator-next {
-        grid-column: 6/8;
-        margin: 0 !important;
-    }
+  .rz-paginator-next {
+      grid-column: 6/8;
+      margin: 0 !important;
+  }
 
-    .rz-paginator-last {
-        grid-column: 8/10;
-        margin: 0 !important;
-    }
+  .rz-paginator-last {
+      grid-column: 8/10;
+      margin: 0 !important;
+  }
 }
 
 @container rz-lookup-panel (max-width: 768px) {
@@ -396,11 +399,8 @@ $paginator-button-size: "%button-md" !default;
 .rz-paginator {
   &.rz-density-compact {
     --rz-paginator-padding: 0.25rem;
-    --rz-paginator-numeric-button-margin: 0 0.125rem;
-    --rz-paginator-first-button-margin: 0 0.25rem 0 0;
-    --rz-paginator-last-button-margin: 0 0 0 0.25rem;
-    --rz-paginator-dropdown-margin: 0 0 0 0.25rem;
-    --rz-paginator-summary-padding: 0 0.5rem 0 0;
+    --rz-paginator-gap: 0.25rem;
+    --rz-paginator-summary-padding: 0.5rem ;
 
     .rz-paginator-element {
       @extend %button-sm;
