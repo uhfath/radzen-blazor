@@ -395,11 +395,11 @@ $scheduler-color: var(--rz-text-color) !default;
 $overlay-shadow: $rz-shadow-3 !default;
 
 // Pager
-$paginator-background-color: transparent !default;
-$paginator-numeric-button-selected-background-color: var(--rz-primary-lighter) !default;
-$paginator-numeric-button-selected-color: var(--rz-on-primary-lighter) !default;
-$paginator-numeric-button-selected-border: 1px solid transparent !default;
-$paginator-summary-color: var(--rz-text-tertiary-color) !default;
+$pager-background-color: transparent !default;
+$pager-numeric-button-selected-background-color: var(--rz-primary-lighter) !default;
+$pager-numeric-button-selected-color: var(--rz-on-primary-lighter) !default;
+$pager-numeric-button-selected-border: 1px solid transparent !default;
+$pager-summary-color: var(--rz-text-tertiary-color) !default;
 
 // Tree
 $tree-node-selected-background-color: var(--rz-primary) !default;

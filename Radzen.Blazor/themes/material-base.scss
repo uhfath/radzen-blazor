@@ -957,42 +957,42 @@ $column-draggable-shadow: var(--rz-shadow-4) !default;
   --rz-grid-header-cell-border: #{$grid-cell-border};
 }
 
-// Paginator
-$paginator-background-color: transparent !default;
-$paginator-padding: 0.5rem 1rem !default;
-$paginator-border: none !default;
-$paginator-button-border-radius: 2rem !default;
-$paginator-button-shadow: inherit !default;
-$paginator-numeric-button-background-color: transparent !default;
-$paginator-numeric-button-color: var(--rz-text-color) !default;
-$paginator-numeric-button-border: none !default;
-$paginator-numeric-button-hover-background-color: var(--rz-base-100) !default;
-$paginator-numeric-button-hover-color: var(--rz-text-title-color) !default;
-$paginator-numeric-button-padding: 0.75rem 1rem !default;
-$paginator-numeric-button-selected-background-color: var(--rz-primary-lighter) !default;
-$paginator-numeric-button-selected-color: var(--rz-on-primary-lighter) !default;
-$paginator-numeric-button-selected-border: none !default;
-$paginator-numeric-button-min-width: 3rem !default;
-$paginator-back-button-background-color: transparent !default;
-$paginator-back-button-color: var(--rz-text-color) !default;
-$paginator-back-button-hover-background-color: var(--rz-base-100) !default;
-$paginator-back-button-hover-color: var(--rz-text-title-color) !default;
-$paginator-gap: 0.5rem !default;
-$paginator-next-button-background-color: transparent !default;
-$paginator-next-button-color: var(--rz-text-color) !default;
-$paginator-next-button-hover-background-color: var(--rz-base-100) !default;
-$paginator-next-button-hover-color: var(--rz-text-title-color) !default;
-$paginator-dropdown-width: 80px !default;
-$paginator-summary-padding: 1.25rem !default;
-$paginator-summary-font-size: 0.875rem !default;
-$paginator-summary-color: var(--rz-text-tertiary-color) !default;
-$paginator-button-size: "%button-lg" !default;
+// Pager
+$pager-background-color: transparent !default;
+$pager-padding: 0.5rem 1rem !default;
+$pager-border: none !default;
+$pager-button-border-radius: 2rem !default;
+$pager-button-shadow: inherit !default;
+$pager-numeric-button-background-color: transparent !default;
+$pager-numeric-button-color: var(--rz-text-color) !default;
+$pager-numeric-button-border: none !default;
+$pager-numeric-button-hover-background-color: var(--rz-base-100) !default;
+$pager-numeric-button-hover-color: var(--rz-text-title-color) !default;
+$pager-numeric-button-padding: 0.75rem 1rem !default;
+$pager-numeric-button-selected-background-color: var(--rz-primary-lighter) !default;
+$pager-numeric-button-selected-color: var(--rz-on-primary-lighter) !default;
+$pager-numeric-button-selected-border: none !default;
+$pager-numeric-button-min-width: 3rem !default;
+$pager-back-button-background-color: transparent !default;
+$pager-back-button-color: var(--rz-text-color) !default;
+$pager-back-button-hover-background-color: var(--rz-base-100) !default;
+$pager-back-button-hover-color: var(--rz-text-title-color) !default;
+$pager-gap: 0.5rem !default;
+$pager-next-button-background-color: transparent !default;
+$pager-next-button-color: var(--rz-text-color) !default;
+$pager-next-button-hover-background-color: var(--rz-base-100) !default;
+$pager-next-button-hover-color: var(--rz-text-title-color) !default;
+$pager-dropdown-width: 80px !default;
+$pager-summary-padding: 1.25rem !default;
+$pager-summary-font-size: 0.875rem !default;
+$pager-summary-color: var(--rz-text-tertiary-color) !default;
+$pager-button-size: "%button-lg" !default;
 
-.rz-paginator-pages {
+.rz-pager-pages {
   max-height: 3rem;
 }
 
-.rz-paginator-element {
+.rz-pager-element {
   box-shadow: var(--rz-shadow-0) !important;
 
   &:hover {
