@@ -1007,11 +1007,13 @@ $pager-button-size: "%button-lg" !default;
 
 // Tree
 $tree-background-color: transparent !default;
-$tree-node-padding: 0.25rem 0.5rem !default;
+$tree-node-padding-block: 0.25rem !default;
+$tree-node-padding-inline: 0.5rem !default;
 $tree-node-selected-background-color: var(--rz-primary-lighter) !default;
 $tree-node-selected-color: var(--rz-on-primary-lighter) !default;
 $tree-node-selected-border-radius: var(--rz-border-radius) !default;
-$tree-node-margin: 0 !default;
+$tree-node-margin-block: 0 !default;
+$tree-node-margin-inline: 0 !default;
 $tree-node-hover-background-color: var(--rz-base-100) !default;
 $tree-node-hover-color: var(--rz-text-title-color) !default;
 $tree-node-toggle-width: 2rem !default;
