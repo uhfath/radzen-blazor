@@ -20,7 +20,8 @@
 }
 
 .rz-autocomplete-input {
-  padding: var(--rz-input-padding);
+  padding-block: var(--rz-input-padding-block);
+  padding-inline: var(--rz-input-padding-inline);
   background-color: transparent;
   color: var(--rz-input-value-color);
   box-shadow: var(--rz-input-shadow);

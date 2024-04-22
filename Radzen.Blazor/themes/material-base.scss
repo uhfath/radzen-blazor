@@ -282,7 +282,8 @@ $chip-border-radius: calc(4 * var(--rz-border-radius)) !default;
 // Input
 $input-height: 2.5rem !default;
 $input-line-height: var(--rz-body-line-height) !default;
-$input-padding: 0.4375rem 0.9375rem !default;
+$input-padding-block: 0.4375rem !default;
+$input-padding-inline: 0.9375rem !default;
 $input-shadow: none !default;
 $input-focus-shadow: inset 0 0 0 1px var(--rz-primary) !default;
 $input-disabled-background-color: var(--rz-base-background-color) !default;
@@ -673,7 +674,8 @@ $dropdown-open-border: 2px solid var(--rz-primary) !default;
 $dropdown-panel-padding: 0 $dropdown-horizontal-padding !default;
 $dropdown-panel-border: none !default;
 $dropdown-panel-shadow: var(--rz-shadow-4) !default;
-$dropdown-chips-padding: 0.4375rem 0.9375rem 0.4375rem 0.4375rem !default;
+$dropdown-chips-padding-block: 0.4375rem !default;
+$dropdown-chips-padding-inline: 0.4375rem 0.9375rem !default;
 
 $multiselect-checkbox-margin-block: 0 !default;
 $multiselect-checkbox-margin-inline: 0 1rem !default;
@@ -1370,11 +1372,15 @@ $splitter-bar-color-active: var(--rz-on-primary) !default;
 $splitter-bar-background-color-active: var(--rz-primary) !default;
 
 // FormField
-$form-field-margin: 0.5rem 0 0 !default;
-$form-field-start-end-padding: 0 0.75rem !default;
+$form-field-margin-block: 0.5rem 0 !default;
+$form-field-margin-inline: 0 !default;
+$form-field-start-end-padding-block: 0 !default;
+$form-field-start-end-padding-inline: 0.75rem !default;
 $form-field-filled-height: 3.375rem !default;
-$form-field-filled-padding: 1.4375rem 0.9375rem 0.4375rem !default;
-$form-field-filled-numeric-padding: 1.4375rem 1.25rem 0.4375rem 0.9375rem !default;
+$form-field-filled-padding-block: 1.4375rem 0.4375rem  !default;
+$form-field-filled-padding-inline: 0.9375rem !default;
+$form-field-filled-numeric-padding-block: 1.4375rem 0.4375rem !default;
+$form-field-filled-numeric-padding-inline: 0.9375rem 1.25rem !default;
 $form-field-filled-background-color: var(--rz-base-200) !default;
 $form-field-filled-hover-background-color: var(--rz-base-300) !default;
 $form-field-filled-border: var(--rz-border-width) solid var(--rz-base-200) !default;
@@ -1389,7 +1395,7 @@ $form-field-hover-shadow: var(--rz-input-hover-shadow) !default;
 $form-field-focus-shadow: var(--rz-input-focus-shadow) !default;
 $form-field-label-padding: 0 0.25rem !default;
 $form-field-text-label-padding: 0 !default;
-$form-field-label-left: 0.6875rem !default;
+$form-field-label-inset-inline-start: 0.6875rem !default;
 $form-field-label-textarea-top: 0.5rem !default;
 $form-field-label-floating-top: -0.5625rem !default;
 $form-field-helper-padding: 0 1rem !default;

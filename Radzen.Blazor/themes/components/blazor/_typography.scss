@@ -192,8 +192,9 @@ $text-transform: (
     .rz-label {
       min-height: var(--rz-input-height);
       line-height: var(--rz-input-line-height);
-      padding: var(--rz-input-padding);
-      padding-left: 0;
+      padding-block: var(--rz-input-padding-block);
+      padding-inline: var(--rz-input-padding-inline);
+      padding-inline-start: 0;
       border-top: var(--rz-input-border);
       border-bottom: var(--rz-input-border);
       border-color: transparent;

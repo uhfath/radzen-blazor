@@ -33,7 +33,8 @@ $dropdown-panel-padding: 0 $dropdown-horizontal-padding !default;
 $dropdown-panel-border: var(--rz-input-border) !default;
 $dropdown-panel-shadow: none !default;
 
-$dropdown-chips-padding: var(--rz-input-padding) !default;
+$dropdown-chips-padding-block: var(--rz-input-padding-block) !default;
+$dropdown-chips-padding-inline: var(--rz-input-padding-inline) !default;
 
 $multiselect-checkbox-margin-block: 0 !default;
 $multiselect-checkbox-margin-inline: 0 0.5rem !default;
@@ -73,7 +74,8 @@ $multiselect-checkbox-margin-inline: 0 0.5rem !default;
   --rz-dropdown-panel-border: #{$dropdown-panel-border};
   --rz-dropdown-panel-shadow: #{$dropdown-panel-shadow};
 
-  --rz-dropdown-chips-padding: #{$dropdown-chips-padding};
+  --rz-dropdown-chips-padding-block: #{$dropdown-chips-padding-block};
+  --rz-dropdown-chips-padding-inline: #{$dropdown-chips-padding-inline};
 
   --rz-multiselect-checkbox-margin-block: #{$multiselect-checkbox-margin-block};
   --rz-multiselect-checkbox-margin-inline: #{$multiselect-checkbox-margin-inline};
@@ -321,7 +323,8 @@ $multiselect-checkbox-margin-inline: 0 0.5rem !default;
 
 .rz-dropdown-chips {
     height: inherit;
-    padding: var(--rz-dropdown-chips-padding);
+    padding-block: var(--rz-dropdown-chips-padding-block);
+    padding-inline: var(--rz-dropdown-chips-padding-inline);
 
     .rz-dropdown-chips-wrapper {
         display: flex;
