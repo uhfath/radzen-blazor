@@ -161,7 +161,7 @@ $form-field-helper-padding: 0 0.5rem !default;
             --rz-form-field-label-floating-top: var(--rz-form-field-filled-label-floating-top);
             box-shadow: var(--rz-input-shadow);
 
-            .rz-spinner-up {
+            .rz-numeric-up {
                 top: calc(var(--rz-numeric-button-offset) + 1rem);
             }
 
@@ -310,11 +310,11 @@ $form-field-helper-padding: 0 0.5rem !default;
         }
     }
 
-    .rz-spinner-button {
+    .rz-numeric-button {
         display: none;
     }
 
-    .rz-spinner:focus-within .rz-spinner-button {
+    .rz-numeric:focus-within .rz-numeric-button {
         display: block;
     }
 
@@ -359,7 +359,7 @@ $form-field-helper-padding: 0 0.5rem !default;
     .rz-form-field:not(.rz-floating-label) &,
     .rz-textbox:focus ~ &,
     .rz-textarea:focus ~ &,
-    .rz-spinner:focus-within ~ &,
+    .rz-numeric:focus-within ~ &,
     .rz-autocomplete:focus-within ~ &,
     .rz-textbox:not(:placeholder-shown) ~ &,
     :not(.rz-state-empty) ~ &,
@@ -410,7 +410,7 @@ $form-field-helper-padding: 0 0.5rem !default;
 
     .rz-textbox:focus ~ &,
     .rz-textarea:focus ~ &,
-    .rz-spinner:focus-within ~ &,
+    .rz-numeric:focus-within ~ &,
     .rz-autocomplete:focus-within ~ &  {
         color: var(--rz-form-field-label-focus-color);
 

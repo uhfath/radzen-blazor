@@ -836,7 +836,7 @@ $timepicker-border: var(--rz-border-base-300) !default;
 .rz-timepicker {
   flex-wrap: wrap;
 
-  .rz-spinner {
+  .rz-numeric {
     flex: 1;
   }
 
@@ -859,8 +859,8 @@ $numeric-line-height: var(--rz-body-line-height) !default;
 $numeric-input-padding: 0.4375rem 1.25rem 0.4375rem 0.9375rem;
 $numeric-button-width: 1rem !default;
 
-.rz-spinner {
-  .rz-spinner-button {
+.rz-numeric {
+  .rz-numeric-button {
     box-shadow: none;
 
     &:hover {

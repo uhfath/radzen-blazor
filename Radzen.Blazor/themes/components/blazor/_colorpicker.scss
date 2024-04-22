@@ -283,11 +283,11 @@ button.rz-colorpicker-trigger {
     height: var(--rz-colorpicker-hex-input-height);
   }
 
-  .rz-spinner {
+  .rz-numeric {
     padding: var(--rz-colorpicker-rgba-input-padding);
     height: var(--rz-colorpicker-rgba-input-height);
 
-    .rz-spinner-input {
+    .rz-numeric-input {
       padding: 0;
       outline: none;
     }

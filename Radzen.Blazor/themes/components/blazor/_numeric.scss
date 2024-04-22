@@ -24,7 +24,7 @@ $numeric-button-disabled-color: var(--rz-text-disabled-color) !default;
   --rz-numeric-button-color: #{$numeric-button-color};
 }
 
-.rz-spinner {
+.rz-numeric {
   display: inline-block;
   position: relative;
 
@@ -58,7 +58,7 @@ $numeric-button-disabled-color: var(--rz-text-disabled-color) !default;
   &.rz-state-disabled {
     @extend %input-disabled;
 
-    .rz-spinner-button {
+    .rz-numeric-button {
       background-color: var(--rz-numeric-button-disabled-background-color);
       color: var(--rz-numeric-button-disabled-color);
 
@@ -74,7 +74,7 @@ $numeric-button-disabled-color: var(--rz-text-disabled-color) !default;
   }
 }
 
-.rz-spinner-button {
+.rz-numeric-button {
   position: absolute;
   right: var(--rz-numeric-button-offset);
   padding: 0;
@@ -107,10 +107,10 @@ $numeric-button-disabled-color: var(--rz-text-disabled-color) !default;
   }
 }
 
-.rz-spinner-up {
+.rz-numeric-up {
   top: var(--rz-numeric-button-offset);
 }
 
-.rz-spinner-down {
+.rz-numeric-down {
   bottom: var(--rz-numeric-button-offset);
 }
