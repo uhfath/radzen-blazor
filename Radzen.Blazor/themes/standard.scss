@@ -602,7 +602,8 @@ $upload-cancel-background-color: var(--rz-base-300) !default;
 
 // Dialog
 $dialog-title-background-color: var(--rz-base-background-color) !default;
-$dialog-title-padding: 1.25rem 1.25rem 0.5rem !default;
+$dialog-title-padding-block: 1.25rem 0.5rem !default;
+$dialog-title-padding-inline: 1.25rem !default;
 $dialog-title-font-size: 1.5rem !default;
 $dialog-title-line-height: 1.25em !default;
 $dialog-close-vertical-align: top !default;
