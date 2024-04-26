@@ -90,11 +90,18 @@ namespace Radzen.Blazor
         public string Image { get; set; }
 
         /// <summary>
-        /// Gets or sets the template.
+        /// Gets or sets the icon template.
         /// </summary>
-        /// <value>The template.</value>
+        /// <value>The icon template.</value>
         [Parameter]
-        public RenderFragment Template { get; set; }
+        public RenderFragment IconTemplate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the text template.
+        /// </summary>
+        /// <value>The text template.</value>
+        [Parameter]
+        public RenderFragment TextTemplate { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="RadzenPanelMenuItem"/> is expanded.

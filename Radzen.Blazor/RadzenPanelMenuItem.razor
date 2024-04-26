@@ -8,22 +8,34 @@
             @if (Path != null)
             {
                 <NavLink tabindex="-1" target="@Target" class=@(Selected ? "rz-navigation-item-link rz-navigation-item-link-active" : "rz-navigation-item-link") style="@(Parent?.DisplayStyle == MenuItemDisplayStyle.Icon?"margin-right:0px;":"")" href="@Path" Match="@Match">
-                    @if (!string.IsNullOrEmpty(Icon) && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
+                    @if (IconTemplate != null && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
                     {
-                        <i class="rzi rz-navigation-item-icon" style="@getIconStyle()">@((MarkupString)Icon)</i>
+                        @IconTemplate
                     }
-                    @if (!string.IsNullOrEmpty(Image) && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
+                    else
                     {
-                        <img class="rz-navigation-item-icon" src="@Image" alt=@ImageAlternateText />
+                        @if (!string.IsNullOrEmpty(Icon) && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
+                        {
+                            <i class="rzi rz-navigation-item-icon" style="@getIconStyle()">@((MarkupString)Icon)</i>
+                        }
+                        @if (!string.IsNullOrEmpty(Image) && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
+                        {
+                            <img class="rz-navigation-item-icon" src="@Image" alt=@ImageAlternateText />
+                        }
                     }
-                    @if (Template != null)
+
+                    @if (TextTemplate != null && (Parent?.DisplayStyle == MenuItemDisplayStyle.Text || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
                     {
-                        @Template
+                        @TextTemplate
                     }
-                    else if (Parent?.DisplayStyle == MenuItemDisplayStyle.Text || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText)
+                    else
                     {
-                        <span class="rz-navigation-item-text" @onclick="@Toggle">@Text</span>
+                        if (Parent?.DisplayStyle == MenuItemDisplayStyle.Text || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText)
+                        {
+                            <span class="rz-navigation-item-text" @onclick="@Toggle">@Text</span>
+                        }
                     }
+
                     @if (items.Any() && Parent?.ShowArrow == true)
                     {
                         <i class="rzi rz-navigation-item-icon-children" style="@getStyle()" @onclick="@Toggle" @onclick:preventDefault>keyboard_arrow_down</i>
@@ -33,22 +45,34 @@
             else
             {
                 <div class="rz-navigation-item-link" style="@(Parent?.DisplayStyle == MenuItemDisplayStyle.Icon?"margin-right:0px;":"")" @onclick="@Toggle">
-                    @if (!string.IsNullOrEmpty(Icon) && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
+                    @if (IconTemplate != null && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
                     {
-                        <i class="rzi rz-navigation-item-icon" style="@getIconStyle()">@((MarkupString)Icon)</i>
+                        @IconTemplate
                     }
-                    @if (!string.IsNullOrEmpty(Image) && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
+                    else
                     {
-                        <img class="rz-navigation-item-icon" src="@Image" alt=@ImageAlternateText />
+                        @if (!string.IsNullOrEmpty(Icon) && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
+                        {
+                            <i class="rzi rz-navigation-item-icon" style="@getIconStyle()">@((MarkupString)Icon)</i>
+                        }
+                        @if (!string.IsNullOrEmpty(Image) && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
+                        {
+                            <img class="rz-navigation-item-icon" src="@Image" alt=@ImageAlternateText />
+                        }
                     }
-                    @if (Template != null)
+
+                    @if (TextTemplate != null && (Parent?.DisplayStyle == MenuItemDisplayStyle.Text || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
                     {
-                        @Template
+                        @TextTemplate
                     }
-                    else if (Parent?.DisplayStyle == MenuItemDisplayStyle.Text || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText)
+                    else
                     {
-                        <span class="rz-navigation-item-text">@Text</span>
+                        if (Parent?.DisplayStyle == MenuItemDisplayStyle.Text || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText)
+                        {
+                            <span class="rz-navigation-item-text">@Text</span>
+                        }
                     }
+
                     @if (items.Any() && Parent?.ShowArrow == true)
                     {
                         <i class="rzi rz-navigation-item-icon-children" style="@getStyle()">keyboard_arrow_down</i>
