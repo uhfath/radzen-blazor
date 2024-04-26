@@ -10,7 +10,7 @@
                 <NavLink tabindex="-1" target="@Target" class=@(Selected ? "rz-navigation-item-link rz-navigation-item-link-active" : "rz-navigation-item-link") style="@(Parent?.DisplayStyle == MenuItemDisplayStyle.Icon?"margin-right:0px;":"")" href="@Path" Match="@Match">
                     @if (IconTemplate != null && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
                     {
-                        <div class="rz-navigation-item-icon">
+                        <div>
                             @IconTemplate
                         </div>
                     }
@@ -28,7 +28,7 @@
 
                     @if (TextTemplate != null && (Parent?.DisplayStyle == MenuItemDisplayStyle.Text || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
                     {
-                        <div class="rz-navigation-item-text">
+                        <div>
                             @TextTemplate
                         </div>
                     }
@@ -51,7 +51,7 @@
                 <div class="rz-navigation-item-link" style="@(Parent?.DisplayStyle == MenuItemDisplayStyle.Icon?"margin-right:0px;":"")" @onclick="@Toggle">
                     @if (IconTemplate != null && (Parent?.DisplayStyle == MenuItemDisplayStyle.Icon || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
                     {
-                        <div class="rz-navigation-item-icon">
+                        <div>
                             @IconTemplate
                         </div>
                     }
@@ -69,7 +69,7 @@
 
                     @if (TextTemplate != null && (Parent?.DisplayStyle == MenuItemDisplayStyle.Text || Parent?.DisplayStyle == MenuItemDisplayStyle.IconAndText))
                     {
-                        <div class="rz-navigation-item-text">
+                        <div>
                             @TextTemplate
                         </div>
                     }
