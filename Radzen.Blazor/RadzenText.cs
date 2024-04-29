@@ -158,6 +158,13 @@ namespace Radzen.Blazor
         public string Text { get; set; }
 
         /// <summary>
+        /// Gets or sets the text color.
+        /// </summary>
+        /// <value>The text color.</value>
+        [Parameter]
+        public string TextColor { get; set; }
+
+        /// <summary>
         /// The child content (markup) that will be displayed. Setting the <see cref="Text"/> property will override it.
         /// </summary>
         [Parameter]
@@ -186,6 +193,11 @@ namespace Radzen.Blazor
         /// </summary>
         [Parameter]
         public string Anchor { get; set; }
+
+        string getStyle()
+        {
+            return $"{(!string.IsNullOrEmpty(TextColor) ? $"color:{TextColor};" : null)}{(!string.IsNullOrEmpty(Style) ? Style : null)}";
+        }
 
         /// <inheritdoc />
         protected override void BuildRenderTree(RenderTreeBuilder builder)
@@ -346,7 +358,7 @@ namespace Radzen.Blazor
             if (Visible)
             {
                 builder.OpenElement(0, tagName);
-                builder.AddAttribute(1, "style", Style);
+                builder.AddAttribute(1, "style", getStyle());
                 builder.AddMultipleAttributes(2, Attributes);
                 builder.AddAttribute(3, "class", classList.ToString());
                 builder.AddAttribute(4, "id", GetId());
