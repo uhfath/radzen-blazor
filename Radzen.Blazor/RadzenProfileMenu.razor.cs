@@ -103,7 +103,7 @@ namespace Radzen.Blazor
                     }
                     else
                     {
-                        await item.OnClick(new MouseEventArgs());
+                        await item.OnClick.InvokeAsync(new MouseEventArgs());
                     }
                 }
                 else

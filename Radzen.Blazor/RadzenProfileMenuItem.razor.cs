@@ -86,18 +86,25 @@ namespace Radzen.Blazor
         [CascadingParameter]
         public RadzenProfileMenu Menu { get; set; }
 
-
         /// <summary>
-        /// Handles the <see cref="E:Click" /> event.
+        /// Gets or sets the menu item click callback.
         /// </summary>
-        /// <param name="args">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
-        public async System.Threading.Tasks.Task OnClick(MouseEventArgs args)
-        {
-            if (Menu != null)
-            {
-                await Menu.Click.InvokeAsync(this);
-            }
-        }
+        /// <value>The callback.</value>
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+
+        ///// <summary>
+        ///// Handles the <see cref="E:Click" /> event.
+        ///// </summary>
+        ///// <param name="args">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        //public async System.Threading.Tasks.Task OnClick(MouseEventArgs args)
+        //{
+        //    if (Menu != null)
+        //    {
+        //        await Menu.Click.InvokeAsync(this);
+        //    }
+        //}
 
         RadzenProfileMenu _parent;
         /// <summary>
