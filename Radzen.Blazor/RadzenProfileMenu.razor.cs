@@ -20,7 +20,7 @@ namespace Radzen.Blazor
     /// &lt;/RadzenProfileMenu&gt;
     /// </code>
     /// </example>
-    public partial class RadzenProfileMenu : RadzenComponentWithChildren
+    public partial class RadzenProfileMenu : RadzenComponentWithChildren<RadzenProfileMenu.RadzenProfileMenuContext>
     {
         /// <inheritdoc />
         protected override string GetComponentCssClass()
@@ -34,13 +34,6 @@ namespace Radzen.Blazor
         /// <value>The template.</value>
         [Parameter]
         public RenderFragment Template { get; set; }
-
-        /// <summary>
-        /// Gets or sets the click callback.
-        /// </summary>
-        /// <value>The click callback.</value>
-        [Parameter]
-        public EventCallback<RadzenProfileMenuItem> Click { get; set; }
 
         /// <summary>
         /// Show/Hide the "arrow down" icon
@@ -77,6 +70,15 @@ namespace Radzen.Blazor
         NavigationManager NavigationManager { get; set; }
 
         internal int focusedIndex = -1;
+        private readonly RadzenProfileMenuContext menuContext = new();
+
+        private void OnMenuMouseDown(MouseEventArgs eventArgs)
+        {
+            menuContext.CtrlKey = eventArgs.CtrlKey;
+            menuContext.ShiftKey = eventArgs.ShiftKey;
+            menuContext.AltKey = eventArgs.AltKey;
+            menuContext.MetaKey = eventArgs.MetaKey;
+        }
 
         bool preventKeyPress = true;
         async Task OnKeyPress(KeyboardEventArgs args)
@@ -144,6 +146,32 @@ namespace Radzen.Blazor
             {
                 items.Add(item);
             }
+        }
+
+        /// <summary>
+        /// Menu context
+        /// </summary>
+        public record RadzenProfileMenuContext
+        {
+            /// <summary>
+            /// true if the control key was down when the event was fired. false otherwise.
+            /// </summary>
+            public bool CtrlKey { get; set; }
+
+            /// <summary>
+            /// true if the shift key was down when the event was fired. false otherwise.
+            /// </summary>
+            public bool ShiftKey { get; set; }
+
+            /// <summary>
+            /// true if the alt key was down when the event was fired. false otherwise.
+            /// </summary>
+            public bool AltKey { get; set; }
+
+            /// <summary>
+            /// true if the meta key was down when the event was fired. false otherwise.
+            /// </summary>
+            public bool MetaKey { get; set; }
         }
     }
 }

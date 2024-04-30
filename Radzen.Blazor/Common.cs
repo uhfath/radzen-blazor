@@ -3254,6 +3254,19 @@ namespace Radzen
     }
 
     /// <summary>
+    /// A base class of components that have typed child content.
+    /// </summary>
+    public class RadzenComponentWithChildren<T> : RadzenComponent
+    {
+        /// <summary>
+        /// Gets or sets the child content
+        /// </summary>
+        /// <value>The content of the child.</value>
+        [Parameter]
+        public RenderFragment<T> ChildContent { get; set; }
+    }
+
+    /// <summary>
     /// A base class of row/col components.
     /// </summary>
     public class RadzenFlexComponent : RadzenComponentWithChildren
