@@ -145,12 +145,12 @@ namespace Radzen.Blazor
                 {
                     _filterPropertyType = Type;
                 }
-                else
+                else if(!string.IsNullOrEmpty(Property))
                 {
                     propertyValueGetter = PropertyAccess.Getter<TItem, object>(Property);
                 }
 
-                if (_filterPropertyType == typeof(string))
+                if (_filterPropertyType == typeof(string) && filterOperator != FilterOperator.Custom)
                 {
                     SetFilterOperator(FilterOperator.Contains);
                 }
@@ -980,7 +980,7 @@ namespace Radzen.Blazor
                     property = $@"({property} == null ? """" : {property})";
                 }
 
-                filterValues = Grid.Data.AsQueryable().Select(property).Distinct().Cast(propertyType);
+                filterValues = Grid.Data.AsQueryable().Select(property).Distinct().Cast(propertyType ?? typeof(object));
             }
 
             return filterValues;
@@ -1027,6 +1027,11 @@ namespace Radzen.Blazor
             {
                 DateTimeOffset? offset = DateTime.SpecifyKind((DateTime)value, DateTimeKind.Utc);
                 value = offset;
+            }
+
+            if (PropertyAccess.IsEnum(FilterPropertyType) || (PropertyAccess.IsNullableEnum(FilterPropertyType)))
+            {
+                value = value is not null ? (int)value : null;
             }
 
             if (isFirst)
