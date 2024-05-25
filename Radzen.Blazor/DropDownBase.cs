@@ -195,6 +195,13 @@ namespace Radzen
         }
 
         /// <summary>
+        /// Gets or sets the header template.
+        /// </summary>
+        /// <value>The header template.</value>
+        [Parameter]
+        public RenderFragment HeaderTemplate { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether filtering is allowed. Set to <c>false</c> by default.
         /// </summary>
         /// <value><c>true</c> if filtering is allowed; otherwise, <c>false</c>.</value>
@@ -544,7 +551,7 @@ namespace Radzen
         /// Gets the search identifier.
         /// </summary>
         /// <value>The search identifier.</value>
-        protected string SearchID
+        public string SearchID
         {
             get
             {
@@ -741,11 +748,11 @@ namespace Radzen
 
                 Debounce(DebounceFilter, FilterDelay);
             }
-            else 
+            else
             {
-                var filteredItems = GetView(items.AsQueryable(), 
-                    args.Key, 
-                    StringFilterOperator.StartsWith, 
+                var filteredItems = GetView(items.AsQueryable(),
+                    args.Key,
+                    StringFilterOperator.StartsWith,
                     FilterCaseSensitivity.CaseInsensitive)
                     .Cast<object>()
                     .ToList();
@@ -775,7 +782,7 @@ namespace Radzen
                             selectedIndex = result.Index;
                         }
                         await JSRuntime.InvokeVoidAsync("Radzen.selectListItem", list, list, result.Index);
-                    }                    
+                    }
                 }
 
                 preventKeydown = false;
@@ -971,7 +978,7 @@ namespace Radzen
 
             if (valueAsEnumerable != null)
             {
-                if (!valueAsEnumerable.Cast<object>().SequenceEqual(selectedItems.Select(i => GetItemOrValueFromProperty(i, ValueProperty))))
+                if (!valueAsEnumerable.Cast<object>().SequenceEqual(selectedItems.Select(i => string.IsNullOrEmpty(ValueProperty) ? i : GetItemOrValueFromProperty(i, ValueProperty))))
                 {
                     selectedItems.Clear();
                 }
@@ -1108,7 +1115,7 @@ namespace Radzen
                 }
                 else
                 {
-                    result = source.Where(String.Join(".", query), search);
+                    result = source.Where(DynamicLinqCustomTypeProvider.ParsingConfig, string.Join(".", query), search);
                 }
             }
             else
@@ -1297,7 +1304,7 @@ namespace Radzen
                 }
                 else
                 {
-                    selectedItems = selectedItems.AsQueryable().Where($@"!object.Equals(it.{ValueProperty},@0)", value).ToList();
+                    selectedItems = selectedItems.AsQueryable().Where(DynamicLinqCustomTypeProvider.ParsingConfig, $@"!object.Equals(it.{ValueProperty},@0)", value).ToList();
                 }
             }
             else
@@ -1332,7 +1339,7 @@ namespace Radzen
                         }
                         else
                         {
-                            SelectedItem = view.AsQueryable().Where($@"{ValueProperty} == @0", value).FirstOrDefault();
+                            SelectedItem = view.AsQueryable().Where(DynamicLinqCustomTypeProvider.ParsingConfig, $@"{ValueProperty} == @0", value).FirstOrDefault();
                         }
                     }
                     else
@@ -1359,10 +1366,10 @@ namespace Radzen
                                 }
                                 else
                                 {
-                                    item = view.AsQueryable().Where($@"{ValueProperty} == @0", v).FirstOrDefault();
+                                    item = view.AsQueryable().Where(DynamicLinqCustomTypeProvider.ParsingConfig, $@"{ValueProperty} == @0", v).FirstOrDefault();
                                 }
 
-                                if (!object.Equals(item, null) && !selectedItems.AsQueryable().Where($@"object.Equals(it.{ValueProperty},@0)", v).Any())
+                                if (!object.Equals(item, null) && !selectedItems.AsQueryable().Where(DynamicLinqCustomTypeProvider.ParsingConfig, $@"object.Equals(it.{ValueProperty},@0)", v).Any())
                                 {
                                     selectedItems.Add(item);
                                 }
