@@ -100,6 +100,11 @@ namespace Radzen
         /// <value>The detail.</value>
         public string Detail { get; set; } = string.Empty;
         /// <summary>
+        /// Gets or sets the class.
+        /// </summary>
+        /// <value>The style.</value>
+        public string Class { get; set; } = string.Empty;
+        /// <summary>
         /// Gets or sets the style.
         /// </summary>
         /// <value>The style.</value>
@@ -153,6 +158,7 @@ namespace Radzen
                 && this.Summary == other.Summary 
                 && this.Detail == other.Detail 
                 && this.Duration == other.Duration
+                && this.Class == other.Class
                 && this.Style == other.Style
                 && this.Click == other.Click
                 && this.Close == other.Close
@@ -173,7 +179,7 @@ namespace Radzen
         ///  Return a hash code for the current object
         /// </summary>
         /// <returns></returns>
-        public override int GetHashCode() => (Summary, Detail, Duration, Style, Click, Close, CloseOnClick, Payload, SummaryContent, DetailContent).GetHashCode();
+        public override int GetHashCode() => (Summary, Detail, Duration, Class, Style, Click, Close, CloseOnClick, Payload, SummaryContent, DetailContent).GetHashCode();
 
         /// <summary>
         /// Overloading == operator for NotificationMessage.

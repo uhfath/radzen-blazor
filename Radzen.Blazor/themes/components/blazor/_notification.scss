@@ -1,7 +1,8 @@
 $notification-padding: 1rem 1.25rem !default;
-$notification-icon-margin: 0 0.625rem 0 0 !default;
+$notification-message-margin: 0 0.625rem 0 0.625rem !default;
 $notification-container-background-color: transparent !default;
 $notification-shadow: none !default;
+$notification-message-shadow: var(--rz-shadow-4) !default;
 $notification-border-radius: var(--rz-border-radius) !default;
 $notification-success-color: var(--rz-on-success) !default;
 $notification-success-background-color: var(--rz-success) !default;
@@ -20,9 +21,10 @@ $notification-info-icon-color: $notification-info-color !default;
 
 :root {
   --rz-notification-padding: #{$notification-padding};
-  --rz-notification-icon-margin: #{$notification-icon-margin};
+  --rz-notification-message-margin: #{$notification-message-margin};
   --rz-notification-container-background-color: #{$notification-container-background-color};
   --rz-notification-shadow: #{$notification-shadow};
+  --rz-notification-message-shadow: #{$notification-message-shadow};
   --rz-notification-border-radius: #{$notification-border-radius};
   --rz-notification-success-color: #{$notification-success-color};
   --rz-notification-success-background-color: #{$notification-success-background-color};
@@ -43,6 +45,8 @@ $notification-info-icon-color: $notification-info-color !default;
   top: 100px;
   right: 20px;
   min-width: 20rem;
+  width: fit-content;
+  box-shadow: var(--rz-notification-message-shadow);
 }
 
 .rz-growl-item-container {
@@ -53,6 +57,7 @@ $notification-info-icon-color: $notification-info-color !default;
   border-radius: var(--rz-notification-border-radius);
   box-shadow: var(--rz-notification-shadow);
   padding: var(--rz-notification-padding);
+  display: flex;
 }
 
 .rz-growl-message-success {
@@ -92,7 +97,7 @@ $notification-info-icon-color: $notification-info-color !default;
 }
 
 .rz-growl-icon-close {
-  float: right;
+  margin-left: auto;
 
   &:before {
     content: "close";
@@ -100,9 +105,6 @@ $notification-info-icon-color: $notification-info-color !default;
 }
 
 .rz-growl-image {
-  float: left;
-  margin: var(--rz-notification-icon-margin);
-
   &.rzi-check {
     color: var(--rz-notification-success-icon-color);
 
@@ -141,8 +143,10 @@ $notification-info-icon-color: $notification-info-color !default;
 }
 
 .rz-growl-message {
+  margin: var(--rz-notification-message-margin);
   p {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 0;
   }
 }

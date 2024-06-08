@@ -4,67 +4,76 @@
 {
     var classes = GetMessageCssClasses();
 
-   <div class="rz-notification-message rz-growl " style="width: 250px;z-index: 1002;position:static;@(Message.Click != null || Message.CloseOnClick ? "cursor: pointer;" : "") @Style">
+    <div class="@_classList" style="z-index: 1002;position:static;@(Message.Click != null || Message.CloseOnClick ? "cursor: pointer;" : "") @Style">
         <div aria-live="polite" class="rz-growl-item-container rz-state-highlight @classes.Item1">
             <div class="rz-growl-item">
-                <div class="rz-growl-icon-close rzi rzi-times" @onclick="@Close" style="cursor:pointer"></div>
                 <span class="rz-growl-image rzi @classes.Item2" @onclick="NotificationClicked"></span>
                 <div class="rz-growl-message" @onclick="NotificationClicked">
                     <span class="rz-growl-title">@if (Message.SummaryContent != null) { @Message.SummaryContent(Service); } else { @((MarkupString)Message.Summary); }</span>
                     <p>@if (Message.DetailContent != null) { @Message.DetailContent(Service); } else { @((MarkupString)Message.Detail); }</p>
                 </div>
-                <div style="clear: both;"></div>
+                <div class="rz-growl-icon-close rzi rzi-times" @onclick="@Close" style="cursor:pointer"></div>
             </div>
         </div>
     </div>
 }
 @code {
-   Tuple<string, string> GetMessageCssClasses()
-   {
-      if (Message.Severity == NotificationSeverity.Error)
-      {
-         return new Tuple<string, string>("rz-growl-message-error", "rzi-times");
-      }
-      else if (Message.Severity == NotificationSeverity.Info)
-      {
-         return new Tuple<string, string>("rz-growl-message-info", "rzi-info-circle");
-      }
-      else if (Message.Severity == NotificationSeverity.Success)
-      {
-         return new Tuple<string, string>("rz-growl-message-success", "rzi-check");
-      }
-      else if (Message.Severity == NotificationSeverity.Warning)
-      {
-         return new Tuple<string, string>("rz-growl-message-warn", "rzi-exclamation-triangle");
-      }
+    Tuple<string, string> GetMessageCssClasses()
+    {
+        if (Message.Severity == NotificationSeverity.Error)
+        {
+            return new Tuple<string, string>("rz-growl-message-error", "rzi-times");
+        }
+        else if (Message.Severity == NotificationSeverity.Info)
+        {
+            return new Tuple<string, string>("rz-growl-message-info", "rzi-info-circle");
+        }
+        else if (Message.Severity == NotificationSeverity.Success)
+        {
+            return new Tuple<string, string>("rz-growl-message-success", "rzi-check");
+        }
+        else if (Message.Severity == NotificationSeverity.Warning)
+        {
+            return new Tuple<string, string>("rz-growl-message-warn", "rzi-exclamation-triangle");
+        }
 
-      return new Tuple<string, string>("", "");
-   }
+        return new Tuple<string, string>("", "");
+    }
 
-   [Inject] private NotificationService Service { get; set; }
+    [Inject] private NotificationService Service { get; set; }
 
-   public bool Visible { get; set; } = true;
+    public bool Visible { get; set; } = true;
 
-   [Parameter]
-   public NotificationMessage Message { get; set; }
+    [Parameter]
+    public NotificationMessage Message { get; set; }
 
-   [Parameter]
-   public string Style { get; set; }
+    [Parameter]
+    public string Class { get; set; }
 
-   public void Close()
-   {
-      Service.Messages.Remove(Message);
-      Message?.Close?.Invoke(Message);
-      //System.Threading.Tasks.Task.Delay(0).ContinueWith(r => { Visible = false; });
-   }
+    [Parameter]
+    public string Style { get; set; }
 
-   protected override void OnInitialized()
-   {
-      System.Threading.Tasks.Task.Delay(Convert.ToInt32(Message.Duration ?? 3000)).ContinueWith(r => InvokeAsync(Close));
-   }
+    private string _classList => Rendering.ClassList.Create("rz-notification-message rz-growl")
+        .ToString();
 
-   private void NotificationClicked()
-   {
+    public void Close()
+    {
+        Service.Messages.Remove(Message);
+        Message?.Close?.Invoke(Message);
+        //System.Threading.Tasks.Task.Delay(0).ContinueWith(r => { Visible = false; });
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Message.Duration.HasValue)
+        {
+            await Task.Delay(TimeSpan.FromMilliseconds(Message.Duration.Value));
+            Close();
+        }
+    }
+
+    private void NotificationClicked()
+    {
       if (Message.CloseOnClick)
          Close();
 
