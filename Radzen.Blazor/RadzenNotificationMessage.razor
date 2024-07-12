@@ -5,7 +5,7 @@
     var classes = GetMessageCssClasses();
 
     <div class="@_classList" style="z-index: 1002;position:static;@(Message.Click != null || Message.CloseOnClick ? "cursor: pointer;" : "") @Style">
-        <div aria-live="polite" class="rz-growl-item-container rz-state-highlight @classes.Item1">
+        <div class="rz-growl-item-container rz-state-highlight @classes.Item1">
             <div class="rz-growl-item">
                 <span class="rz-growl-image rzi @classes.Item2" @onclick="NotificationClicked"></span>
                 <div class="rz-growl-message" @onclick="NotificationClicked">
